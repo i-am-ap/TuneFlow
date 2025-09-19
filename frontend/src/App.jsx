@@ -10,6 +10,11 @@ export default function App() {
   const [jobId, setJobId] = useState(null)
   const pollRef = useRef(null)
   const [order, setOrder] = useState('latest') // 🔥 CHANGED: sorting state
+  const tutorialSteps = [
+    "🎵 Paste song lines or upload a .txt containing one song per line (e.g. Shape of You - Ed Sheeran).",
+    "🚀 Click Start Download — backend searches Spotify, finds a YouTube match, downloads audio, and tags MP3s.",
+    "📝 When the job completes, files appear in the Downloaded files section and you can download them."
+  ];
 
   useEffect(() => {
     fetchFiles() // 🔥 CHANGED: call with no arg, uses order state default
@@ -62,6 +67,32 @@ export default function App() {
   function downloadFile(name) {
     window.open(`/api/file/${encodeURIComponent(name)}`, '_blank', 'noopener')
   }
+
+
+  function AccordionStep({ step, index }) {
+    const [open, setOpen] = useState(false)
+    return (
+      <div className="bg-slate-800/40 rounded-lg">
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full p-3 flex justify-between items-center font-semibold text-accent"
+        >
+          <span>{`Step ${index + 1}`}</span>
+          <span>{open ? "−" : "+"}</span>
+        </button>
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0 }}
+          transition={{ duration: 0.3 }}
+          className="p-3 text-slate-300"
+        >
+          {step}
+        </motion.div>
+      </div>
+    )
+  }
+
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6
@@ -253,7 +284,8 @@ export default function App() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
+            <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1
+                            scrollbar-thin scrollbar-thumb-cyan-500/70 scrollbar-track-slate-800/30 hover:scrollbar-thumb-cyan-500/90 transition-colors">
               {files.length === 0 && (
                 <div className="text-sm text-slate-400">
                   No files yet — start a job to generate MP3s.
@@ -285,22 +317,33 @@ export default function App() {
           </motion.div>
         </div>
 
-        <div id="tutorial" className="mt-8 p-4 rounded-md bg-slate-900/20">
-          <h4 className="font-semibold">Quick tutorial</h4>
-          <ol className="pl-4 list-decimal text-slate-300">
-            <li>
-              Paste song lines or upload a <code>.txt</code> containing one song
-              per line (e.g. <code>Shape of You - Ed Sheeran</code>).
-            </li>
-            <li>
-              Click <strong>Start Download</strong> — backend searches Spotify,
-              finds a YouTube match, downloads audio, and tags MP3s.
-            </li>
-            <li>
-              When the job completes, files appear in the Downloaded files section and you can
-              download them.
-            </li>
-          </ol>
+        
+        <div id="tutorial" className="mt-8">
+          <h4 className="font-semibold mb-4 text-accent">Quick Tutorial</h4>
+
+          {/* Desktop & Tablet: Cards */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {tutorialSteps.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="bg-slate-800/40 p-4 rounded-xl shadow-lg hover:scale-105 transition-transform"
+              >
+                <span className="font-bold text-accent">{`Step ${i + 1}`}</span>
+                <p className="mt-2 text-slate-300">{step}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile: Accordion */}
+          <div className="md:hidden flex flex-col gap-2">
+            {tutorialSteps.map((step, i) => (
+              <AccordionStep key={i} index={i} step={step} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
