@@ -1,21 +1,92 @@
-## Smart Downloader (Frontend + Backend)
+# 🎶 TuneFlow
 
-## Quick start (development)
+TuneFlow is a modern web app for **streamlined music file management and playback**.  
+It provides a clean, fast, and engaging interface for uploading, organizing, and interacting with your audio files — all built with **React + TailwindCSS**.  
 
-### Frontend
-1. `cd frontend` (if you put frontend files in `frontend/`, otherwise root)
-2. `npm install`
-3. `npm run dev` (Vite will run on 5173)
+---
 
-### Backend
-1. Create a Python venv: `python -m venv venv && source venv/bin/activate` (Windows: `venv\\Scripts\\activate`)
-2. `pip install -r requirements.txt`
-3. Copy `.env.example` to `.env` and set `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`.
-4. `python app.py` (server runs on port 7860)
+## ✨ Features
 
-API is proxied from Vite dev server so frontend requests to `/api/*` go to `http://localhost:7860/api/*`.
+- 📂 **File Upload & Management** – Upload, preview, and manage your audio files with ease.  
+- 🔍 **Search & Filter** – Quickly find tracks using smart filtering and search.  
+- 🎧 **Built-in Player** – Play your music directly inside the app with a sleek audio player.  
+- 🪄 **Smart Categorization** – Organize tracks into playlists, albums, or categories.  
+- 📱 **Responsive Design** – Works seamlessly on desktop, tablet, and mobile.  
+- ⚡ **Fast & Lightweight** – Built with React, optimized for performance.  
 
-## Notes
-- Do **not** push Spotify credentials to public repos. Use environment variables or secrets.
-- For production: use a task queue (Celery/RQ) and persistent job store (Redis/Postgres). Add rate limiting and quotas.
-- This project is for learning / personal use — be mindful of YouTube/Spotify terms of service.
+---
+
+## 🚀 Getting Started
+
+Follow these steps to set up **TuneFlow** locally:  
+
+### 1. Clone the Repository  
+```bash
+git clone https://github.com/your-username/tuneflow.git
+cd tuneflow
+````
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the Development Server
+
+```bash
+npm run dev
+```
+
+Now open 👉 [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## 🛠️ Tech Stack
+
+* ⚛️ **React** – Component-based UI
+* 🎨 **TailwindCSS** – Utility-first styling
+* 🔄 **Axios/Fetch** – For API calls
+* 📦 **Vite** – Fast bundler for development
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! 🙌
+
+* Fork the repo
+* Create your feature branch (`git checkout -b feature/amazing-feature`)
+* Commit changes (`git commit -m 'Add some amazing feature'`)
+* Push to branch (`git push origin feature/amazing-feature`)
+* Open a Pull Request 🚀
+
+---
+## 📸 Screenshots
+
+<img width="1897" height="908" alt="image" src="https://github.com/user-attachments/assets/ef19d1a3-ddd5-4e89-880f-cc0945316c63" />
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 💡 Future Enhancements
+
+* 🎤 Voice commands for playback & navigation
+* 🌐 Cloud sync for accessing music anywhere
+* 🧠 AI-powered recommendations
+
+---
+
+🔥 Enjoy the flow, keep the vibe alive with **TuneFlow** 🎶
+
+## 🎨💻 Crafted with Passion
+
+**TuneFlow** was lovingly developed & designed by **Aryan Palaspagar** ❤️🎵  
+
+✨ Code. Music. Flow. ✨  
+🚀 Built for modern music lovers and creators 🎶🌌
