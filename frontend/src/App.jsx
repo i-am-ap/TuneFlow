@@ -351,7 +351,6 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  // const API_BASE = process.env.NEXT_PUBLIC_API_URL; // 🔥 Backend URL
   // Detect local vs production
   const API_BASE = import.meta.env.MODE === "development"
       ? "http://localhost:7860" // local Flask server
