@@ -1,0 +1,6 @@
+Flask
+flask-cors
+yt-dlp
+youtubesearchpython
+spotipy
+mutagen

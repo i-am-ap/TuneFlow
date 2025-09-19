@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gradient-to-br from-neutral-900 via-slate-900 to-black text-slate-100;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.8),   /* cyan */
+                 0 0 20px rgba(52, 211, 153, 0.7),   /* emerald */
+                 0 0 30px rgba(59, 130, 246, 0.6);   /* blue */
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 1),
+                 0 0 40px rgba(52, 211, 153, 0.9),
+                 0 0 60px rgba(59, 130, 246, 0.8);
+  }
+}
+
+.animate-text-glow {
+  animation: text-glow 3s ease-in-out infinite;
+}
