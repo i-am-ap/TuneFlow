@@ -761,6 +761,6 @@ def api_file(filename):
 # Run app
 # -----------------------------
 if __name__ == '__main__':
-    PORT = int(os.getenv('PORT', 7860))
+    PORT = int(os.getenv('PORT', 8080))    #7860
     DEBUG = IS_LOCAL or os.getenv("FLASK_DEBUG", "1") == "1"
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
