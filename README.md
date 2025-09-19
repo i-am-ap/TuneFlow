@@ -62,6 +62,11 @@ Contributions are welcome! 🙌
 * Open a Pull Request 🚀
 
 ---
+## 📸 Screenshots
+
+<img width="1897" height="908" alt="image" src="https://github.com/user-attachments/assets/ef19d1a3-ddd5-4e89-880f-cc0945316c63" />
+
+---
 
 ## 📜 License
 
