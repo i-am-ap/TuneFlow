@@ -287,10 +287,16 @@ app = Flask(__name__)
 # allow both local and production frontend
 # CORS(app, resources={r"/api/*": {"origins": [
 #     "http://localhost:5173",  
-#     "https://tune-flow-git-main-i-am-aps-projects.vercel.app"
+#     "https://tune-flow-seven.vercel.app"
 # ]}})
 
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/api/*": {"origins": ["*"]}},
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "OPTIONS"],
+    supports_credentials=False
+)
 
 
 # In-memory job store
