@@ -290,7 +290,7 @@ app = Flask(__name__)
 #     "https://tune-flow-git-main-i-am-aps-projects.vercel.app"
 # ]}})
 
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 
 # In-memory job store
