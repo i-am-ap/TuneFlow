@@ -1,6 +1,8 @@
-Flask
-flask-cors
-yt-dlp
-youtubesearchpython
-spotipy
-mutagen
+Flask==2.3.5
+Flask-Cors==4.0.0
+yt-dlp==2025.9.10
+spotipy==2.26.0
+mutagen==1.46.0
+python-dotenv==1.0.0
+gunicorn==21.2.0
+requests==2.31.0
