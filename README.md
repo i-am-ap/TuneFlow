@@ -79,7 +79,6 @@ This project is licensed under the **MIT License**.
 
 🔥 Enjoy the flow, keep the vibe alive with **TuneFlow** 🎶
 
-```
 ## 🎨💻 Crafted with Passion
 
 **TuneFlow** was lovingly developed & designed by **Aryan Palaspagar** ❤️🎵  
