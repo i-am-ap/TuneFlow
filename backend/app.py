@@ -285,10 +285,13 @@ os.makedirs(SAVE_PATH, exist_ok=True)
 app = Flask(__name__)
 # CORS(app)
 # allow both local and production frontend
-CORS(app, resources={r"/api/*": {"origins": [
-    "http://localhost:5173",  
-    "https://tune-flow-git-main-i-am-aps-projects.vercel.app"
-]}})
+# CORS(app, resources={r"/api/*": {"origins": [
+#     "http://localhost:5173",  
+#     "https://tune-flow-git-main-i-am-aps-projects.vercel.app"
+# ]}})
+
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 # In-memory job store
 JOBS = {}
