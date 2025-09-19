@@ -433,6 +433,12 @@ def worker(job_id, songs):
 # -----------------------------
 # Routes
 # -----------------------------
+
+@app.route("/")
+def health():
+    return {"status": "ok"}
+
+
 @app.route('/api/download', methods=['POST'])
 def api_download():
     data = request.json or {}
