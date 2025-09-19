@@ -587,7 +587,7 @@ CORS(app, resources={
     r"/api/*": {
         "origins": [
             "http://localhost:5173",
-            "https://your-vercel-app.vercel.app"  # change to your frontend
+            "https://tune-flow-seven.vercel.app"  # change to your frontend
         ]
     }
 })
