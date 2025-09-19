@@ -203,4 +203,6 @@ def api_file(filename):
 
 if __name__ == '__main__':
     # For development only. Use a proper WSGI server in production.
-    app.run(host='0.0.0.0', port=7860, debug=True)
+    PORT = int(os.getenv('PORT',  7860))   # default 7860 for local server
+    # app.run(host='0.0.0.0', port=7860, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
