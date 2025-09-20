@@ -119,9 +119,7 @@ export default function App() {
             className="text-2xl sm:text-4xl font-extrabold tracking-tight
                        text-xxl font-extrabold bg-gradient-to-r from-blue-600 via-teal-500 to-cyan-600 bg-clip-text text-transparent tracking-wide"
           >
-            {/* <h1 className="text-xxl font-extrabold bg-gradient-to-r from-blue-600 via-teal-500 to-cyan-600 bg-clip-text text-transparent tracking-wide"> */}
-              TuneFlow
-            {/* </h1> */}
+            TuneFlow
           </motion.h1>
 
           <div className="flex gap-2 sm:gap-3">
