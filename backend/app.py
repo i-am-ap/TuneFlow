@@ -1386,6 +1386,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import os
 import json
 import uuid
@@ -1411,23 +1434,13 @@ SAVE_PATH = LOCAL_DOWNLOADS if ENV == "local" else PROD_DOWNLOADS
 os.makedirs(SAVE_PATH, exist_ok=True)
 
 # ----------------- Cookies -----------------
-COOKIES = None
-COOKIE_FILE_PATH = None
-
+COOKIES_CONTENT = None
 if ENV == "production":
-    yt_cookies_env = os.getenv("YOUTUBE_COOKIES", None)
-    if yt_cookies_env:
-        COOKIE_FILE_PATH = os.path.join("/tmp", "cookies.txt")
-        try:
-            with open(COOKIE_FILE_PATH, "w") as f:
-                f.write(yt_cookies_env)
-            COOKIES = True
-            logger.info("✅ Loaded YouTube cookies from environment variable")
-        except Exception as e:
-            logger.error("❌ Failed to write cookies file: %s", e)
-            COOKIES = None
+    COOKIES_CONTENT = os.getenv("YOUTUBE_COOKIES")
+    if not COOKIES_CONTENT:
+        logger.warning("⚠️ YOUTUBE_COOKIES not set in ENV!")
     else:
-        logger.warning("⚠️ ENV=production but YOUTUBE_COOKIES not set")
+        logger.info("✅ Loaded YouTube cookies from ENV")
 else:
     logger.info("⚠️ Running in local mode: cookies not used")
 
@@ -1450,6 +1463,13 @@ def search_youtube(query: str):
     from yt_dlp import YoutubeDL
 
     opts = {"quiet": True, "skip_download": True, "default_search": "ytsearch1"}
+    if ENV == "production" and COOKIES_CONTENT:
+        # Save cookies temporarily to /tmp
+        cookie_path = "/tmp/cookies.txt"
+        with open(cookie_path, "w", encoding="utf-8") as f:
+            f.write(COOKIES_CONTENT)
+        opts["cookiefile"] = cookie_path
+
     with YoutubeDL(opts) as ydl:
         info = ydl.extract_info(query, download=False)
         if "entries" in info and info["entries"]:
@@ -1495,13 +1515,17 @@ def worker(job_id, songs):
                 ydl_opts = {
                     "format": "bestaudio/best",
                     "outtmpl": out_file,
-                    "cookiefile": COOKIE_FILE_PATH if ENV == "production" and COOKIES else None,
                     "postprocessors": [
                         {"key": "FFmpegExtractAudio", "preferredcodec": "mp3", "preferredquality": "192"}
                     ],
                     "quiet": True,
                     "progress_hooks": [lambda d, job_id=job_id, idx=idx: progress_hook(d, job_id, idx)],
                 }
+
+                # Use cookies only in production
+                if ENV == "production" and COOKIES_CONTENT:
+                    cookie_path = "/tmp/cookies.txt"
+                    ydl_opts["cookiefile"] = cookie_path
 
                 with YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
