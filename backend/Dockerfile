@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy app files
 COPY . .
 
-# Expose Railway dynamic port (use environment variable)
-EXPOSE ${PORT}
+# Expose a dummy port (7860 works fine)
+EXPOSE 7860
 
-# Start app
+# Start app (uses Railway $PORT automatically at runtime)
 CMD ["python", "app.py"]
