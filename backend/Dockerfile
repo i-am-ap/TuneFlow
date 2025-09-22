@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy app files
 COPY . .
 
-# Expose port
-EXPOSE 7860
+# Expose Railway dynamic port (use environment variable)
+EXPOSE ${PORT}
 
 # Start app
 CMD ["python", "app.py"]
