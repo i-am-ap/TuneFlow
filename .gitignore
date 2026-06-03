@@ -5,3 +5,4 @@ backend/downloads_local/
 backend/downloads_prod/
 backend/config/cookies.txt
 frontend/node_modules/
+*.mp3
