@@ -36,10 +36,12 @@ app = Flask(__name__)
 frontend_env = os.getenv("FRONTEND_ORIGINS", "")
 origins = [o.strip() for o in frontend_env.split(",") if o.strip()] or ["http://localhost:5173"]
 
-if os.getenv("FRONTEND_ORIGINS") == "*":
-    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
-else:
-    CORS(app, resources={r"/api/*": {"origins": origins}}, supports_credentials=True)
+# if os.getenv("FRONTEND_ORIGINS") == "*":
+#     CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+# else:
+#     CORS(app, resources={r"/api/*": {"origins": origins}}, supports_credentials=True)
+
+CORS(app)
 
 # ----------------- In-Memory Job Store -----------------
 JOBS = {}
@@ -149,7 +151,7 @@ def worker(job_id, songs):
 def health():
     return jsonify({"status": "ok", "message": f"TuneFlow running in {ENV} mode"})
 
-@app.route("/api/download", methods=["POST"])
+@app.route("/api/download", methods=["GET","POST"])
 def api_download():
     data = request.json or {}
     songs = data.get("songs") or []
