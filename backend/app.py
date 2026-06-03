@@ -27,7 +27,7 @@ if ENV == "production":
     if not COOKIES_CONTENT:
         logger.warning("⚠️ YOUTUBE_COOKIES not set in ENV!")
     else:
-        logger.info("✅ Loaded YouTube cookies from ENV")
+        logger.info("✅ Loaded YouTube cookies from ENV ({len(COOKIES_CONTENT)} chars)")
 else:
     logger.info("⚠️ Running in local mode: cookies not used")
 
@@ -56,6 +56,10 @@ def search_youtube(query: str):
         cookie_path = "/tmp/cookies.txt"
         with open(cookie_path, "w", encoding="utf-8") as f:
             f.write(COOKIES_CONTENT)
+
+        logger.info(f"Cookie file written: {cookie_path}")
+        logger.info(f"Cookie size: {os.path.getsize(cookie_path)} bytes")
+        
         opts["cookiefile"] = cookie_path
 
     with YoutubeDL(opts) as ydl:
@@ -151,7 +155,7 @@ def worker(job_id, songs):
 def health():
     return jsonify({"status": "ok", "message": f"TuneFlow running in {ENV} mode"})
 
-@app.route("/api/download", methods=["","POST"])
+@app.route("/api/download", methods=["POST"])
 def api_download():
     data = request.json or {}
     songs = data.get("songs") or []
