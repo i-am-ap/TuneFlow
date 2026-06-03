@@ -6,3 +6,5 @@ backend/downloads_prod/
 backend/config/cookies.txt
 frontend/node_modules/
 *.mp3
+cookies.txt
+*.cookies
