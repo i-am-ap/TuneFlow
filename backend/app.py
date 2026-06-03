@@ -151,7 +151,7 @@ def worker(job_id, songs):
 def health():
     return jsonify({"status": "ok", "message": f"TuneFlow running in {ENV} mode"})
 
-@app.route("/api/download", methods=["GET","POST"])
+@app.route("/api/download", methods=["","POST"])
 def api_download():
     data = request.json or {}
     songs = data.get("songs") or []
